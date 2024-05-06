@@ -1,0 +1,42 @@
+function addComment() {
+    var commentInput = document.getElementById("commentInput");
+    var commentText = commentInput.value;
+    if (commentText.trim() === "") {
+        alert("Please enter a comment!");
+        return;
+    }
+
+    // Get user information from local storage
+    var user = JSON.parse(localStorage.getItem("user"));
+
+    // Check if user is logged in
+    if (!user) {
+        alert("Please log in to add a comment!");
+        return;
+    }
+
+    var commentList = document.getElementById("commentsList");
+    var li = document.createElement("li");
+    li.textContent = commentText + " (by " + user.username + ")"; // Display username with comment
+
+    var closeButton = document.createElement("span");
+    closeButton.textContent = "×";
+    closeButton.className = "close";
+    closeButton.onclick = function() {
+        commentList.removeChild(li);
+    };
+
+    li.appendChild(closeButton);
+    commentList.appendChild(li);
+
+    commentInput.value = "";
+}
+
+// Function to initialize the close button functionality
+var closeButtons = document.getElementsByClassName("close");
+for (var i = 0; i < closeButtons.length; i++) {
+    closeButtons[i].onclick = function() {
+        var li = this.parentElement;
+        li.parentElement.removeChild(li);
+    };
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Sites In Bath</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+		
+        <p><a href="MaryShelly.html" class="NavLink">Mary Shelly's House</a></p>
+		
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+		
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath at Work</a></p>
+		
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+		
+        <p><a href="HolburneMuseum.html" class="CurrNavLink">Holburne Museum</a></p>
+		
+        <p><a href="UserProfile.html" class="NavLink">User Profile</a></p>
+    </div>
+
+    <!-- General Information -->
+    <div class="GeneralInfo">
+        <h2>Holburne Museum</h2>
+        <p>With its first collection created by Sir Thomas William Holburne, the Holburne Museum has a multitude of different art collections that have accumulated over the centeries. This is a must see place for any fans of art history.</p>
+        <h3>Photos:</h3>
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="Images/HolbMuseum1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <img src="Images/HolbMuseum2.jpg" style="width:100%">
+            </div>
+			
+			<div class="mySlides">
+                <img src="Images/HolbMuseum3.jpg" style="width:100%">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+		<h3>Map Of Site:</h3>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2489.9420555014535!2d-2.3508920999999945!3d51.38574299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871810cc0d79c9f%3A0x71fe65e7d6e24ce0!2sThe%20Holburne%20Museum!5e0!3m2!1sen!2suk!4v1713990254297!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+	 <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>

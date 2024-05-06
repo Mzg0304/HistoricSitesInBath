@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Sites In Bath</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css' rel='stylesheet' />
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js'></script>
+    
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+        <p><a href="MaryShelly.html" class="CurrNavLink">Mary Shelly's House</a></p>
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath at Work</a></p>
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+        <p><a href="UserProfile.html" class="NavLink">User Profile</a></p>
+    </div>
+
+    <!-- General Information -->
+    <div class="GeneralInfo">
+        <!-- Dropdown menu for selecting destination -->
+        <div class="ui-widget">
+            <label for="tags">Select Destination: </label>
+            <input id="tags">
+        </div>
+
+        <!-- Calendar for choosing the date -->
+        <div id='calendar'></div>
+
+        <!-- Dropdown menu for selecting number of tickets -->
+        <div>
+            <label for="ticketCount">Number of Tickets: </label>
+            <select id="ticketCount">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+
+        <!-- Button to book the visit -->
+        <button onclick="bookVisit()">Book a Visit</button>
+		<p id="selectedDateMessage" style="margin-top: 10px;"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js'></script>
+    <script>
+    var availableTags = [
+        "Mary Shelly's House",
+        "Roman Baths",
+        "Museum Of Bath",
+        "Beckford's Tower",
+        "Holburne Museum",
+    ];
+    $("#tags").autocomplete({
+        source: availableTags
+    });
+
+    var selectedDateElement = null;
+    var selectedDateFormatted = null;
+    var isDateValid = false; // Variable to track whether the date has been checked for selectability
+
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        dateClick: function(info) {
+            // Remove CSS styling from previously selected date
+            if (selectedDateElement) {
+                selectedDateElement.classList.remove('selected-date');
+                selectedDateElement.style.backgroundColor = ''; // Reset background color
+            }
+            
+			if(isDateValid == false){
+				alert("You cannot select dates before today.");
+				return;
+			}
+            // Apply CSS styling to the currently selected date
+            selectedDateElement = info.dayEl;
+            selectedDateElement.classList.add('selected-date');
+            selectedDateElement.style.backgroundColor = '#C17A8F'; // Set background color for the selected date
+
+            // Format selected date globally
+            selectedDateFormatted = info.dateStr;
+
+            // Display selected date
+            alert("Selected Date: " + selectedDateFormatted);
+        },
+        selectAllow: function(selectInfo) {
+            if (selectInfo.start >= new Date()) {
+                isDateValid = true; // Mark the date as valid
+                return true; // Allow selection
+            } 
+			isDateValid = false; // Mark the date as invalid
+        }
+    });
+
+    calendar.render();
+
+    function bookVisit() {
+        if (!selectedDateFormatted) {
+            alert("Please select a date.");
+            return;
+        }
+
+        var selectedDestination = $("#tags").val();
+        var ticketCount = $("#ticketCount").val();
+
+        if (selectedDestination == "") {
+            alert("Please select a destination");
+            return;
+        }
+        // Save selected data to local storage
+        localStorage.setItem("selectedDestination", selectedDestination);
+        localStorage.setItem("selectedDate", selectedDateFormatted);
+        localStorage.setItem("ticketCount", ticketCount);
+
+        // Redirect to another page or perform further actions
+        // For now, display the selected data
+        alert("Visit booked!\nDestination: " + selectedDestination + "\nDate: " + selectedDateFormatted + "\nTickets: " + ticketCount);
+		 window.location.href = "ConfirmBooking.html"; // Change "login.html" to the actual URL of the login page
+    }
+</script>
+
+</body>
+</html>

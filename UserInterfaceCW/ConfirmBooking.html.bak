@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Booking Confirmation</h1>
+    </div>
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+        <p><a href="MaryShelly.html" class="NavLink">Mary Shelly's House of Frankenstein</a></p>
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath at Work</a></p>
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+        <p><a href="UserProfile.html" class="CurrNavLink">User Profile</a></p>
+    </div>
+
+    <!-- Booking Details -->
+    <div class="GeneralInfo">
+        <h2>Confirm Your Booking</h2>
+        <p>Please select a time slot:</p>
+        <select id="timeSlot">
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <!-- Payment Information -->
+        <h3>Payment Information</h3>
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" placeholder="Enter card number">
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="text" id="expiryDate" placeholder="MM/YYYY">
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" placeholder="CVV">
+
+        <!-- Display booking details -->
+        <div id="bookingDetails">
+            <!-- Booking details will be displayed here -->
+        </div>
+
+        <!-- Button to confirm booking -->
+        <button onclick="confirmBooking()">Confirm Booking</button>
+    </div>
+
+    <!-- Script to handle booking confirmation -->
+    <script>
+        // Retrieve saved booking information from localStorage
+        var selectedDestination = localStorage.getItem("selectedDestination");
+        var selectedDate = localStorage.getItem("selectedDate");
+        var ticketCount = localStorage.getItem("ticketCount");
+        var selectedDateFormatted = localStorage.getItem("selectedDateFormatted"); // Retrieve selected date
+
+        // Display the retrieved booking information
+        var bookingDetails = document.getElementById("bookingDetails");
+        bookingDetails.innerHTML = "<p>Destination: " + selectedDestination + "</p>";
+        bookingDetails.innerHTML += "<p>Date: " + selectedDate + "</p>";
+        bookingDetails.innerHTML += "<p>Tickets: " + ticketCount + "</p>";
+
+        function confirmBooking() {
+            // Retrieve booking details
+            var selectedTime = document.getElementById("timeSlot").value;
+            var cardNumber = document.getElementById("cardNumber").value;
+            var last4Digits = cardNumber.slice(-4);
+            var expiryDate = document.getElementById("expiryDate").value;
+            var cvv = document.getElementById("cvv").value;
+
+            // Save selected time to localStorage
+            localStorage.setItem("selectedTime", selectedTime);
+
+            // Construct unique HTML content for the booking confirmation
+            var htmlContent = "<h1>Booking Confirmation</h1>";
+            htmlContent += "<p>Destination: " + selectedDestination + "</p>";
+            htmlContent += "<p>Date: " + selectedDate + "</p>";
+            htmlContent += "<p>Tickets: " + ticketCount + "</p>";
+            htmlContent += "<p>Time Slot: " + selectedTime + "</p>";
+            htmlContent += "<p>Last 4 Digits of Card Number: " + last4Digits + "</p>";
+           
+            // Create a unique HTML name for the booking confirmation
+            var uniqueName = selectedDestination.replace(/\s+/g, "_") + "_" + selectedDate.replace(/\//g, "-") + "_" + new Date().getTime() + ".html";
+
+            // Create a new window for the PDF
+            var win = window.open('', '_blank');
+            win.document.write(htmlContent);
+            win.document.close();
+
+            // Save the HTML content as a file
+            var blob = new Blob([htmlContent], { type: "text/html" });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = uniqueName;
+            a.click();
+			
+			// Redirect to the UserProfile.html page after generating the PDF
+			setTimeout(function() {
+				window.location.href = "UserProfile.html";
+			}, 1000); // Delay of 1 second (1000 milliseconds)
+        }
+    </script>
+</body>
+</html>

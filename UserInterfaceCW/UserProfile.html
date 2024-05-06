@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+ 
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+        <p><a href="MaryShelly.html" class="NavLink">Mary Shelly's House</a></p>
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath</a></p>
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+        <p><a href="UserProfile.html" class="CurrNavLink">User Profile</a></p>
+    </div>
+
+    <!-- General Information -->
+    <div class="GeneralInfo" id="generalInfo">
+        <!-- Dynamic content will be displayed here -->
+    </div>
+
+    <!-- Script to personalize content -->
+    <script>
+        // Check if user is logged in or session data exists
+        var userId = localStorage.getItem("userId");
+        var isLoggedIn = userId ? true : false;
+
+        // Function to render personalized content
+        function renderContent() {
+            if (isLoggedIn) {
+                // Retrieve user's profile data or initialize as empty object
+                var userProfile = JSON.parse(localStorage.getItem("userProfile_" + userId)) || {};
+
+                // Retrieve existing planned visits or initialize as empty array
+                var plannedVisits = userProfile.plannedVisits || [];
+
+                // Generate HTML for planned visits table
+                var plannedVisitsRows = plannedVisits.map(function (visit) {
+                    var notes = visit.yourNotes || ''; // Check if notes exist
+                    // Generate HTML content for the visit
+                    var htmlContent = `
+                        <html>
+                        <head>
+                            <title>${visit.tripDestination}</title>
+                        </head>
+                        <body>
+                            <h1>${visit.tripDestination}</h1>
+                            <p>Date: ${visit.selectedDate}</p>
+                            <p>Tickets: ${visit.ticketCount}</p>
+                            <p>Time Slot: ${visit.selectedTime}</p>
+                            <p>Your notes: ${notes}</p>
+                        </body>
+                        </html>`;
+
+                    // Create a Blob containing the HTML content
+                    var blob = new Blob([htmlContent], { type: "text/html" });
+
+                    // Create a URL for the Blob
+                    var url = URL.createObjectURL(blob);
+
+                    // Return a link to download the HTML file
+                    return `
+                        <tr>
+                            <td>${visit.tripNumber}</td>
+                            <td>${visit.tripDestination}</td>
+                            <td><a href="${url}" download="${visit.fileName}">View</a></td>
+                            <td contenteditable="true">${notes}</td>
+                            <td><button class="delete-btn" onclick="deleteVisit(this)">Delete</button></td>
+                        </tr>`;
+                }).join("");
+
+                document.getElementById("generalInfo").innerHTML = `
+                    <div class="planned-visits">
+                        <h2>Planned Visits</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Trip Number</th>
+                                    <th>Trip Destinations</th>
+                                    <th>Download Trip Information</th>
+                                    <th>Your Notes</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>${plannedVisitsRows}</tbody>
+                        </table>
+                        <a href="BookTrip.html" class="book-visit-btn">Book a Visit</a>
+                        <button class="logout-btn" onclick="logout()">Logout</button> <!-- Logout button -->
+                    </div>`;
+            } else {
+                // Display login and signup options for non-logged-in user
+                document.getElementById("generalInfo").innerHTML = `
+                    <!-- Default content for non-logged-in user -->
+                    <p>Please log in or sign up to access personalized content.</p>
+                    <div class="user-outline" style="margin-top: 100px; margin-left: 60px !important;">
+                        <div class="circle"></div>
+                        <a href="Login.html">Log In</a>
+                        <span class="line"></span> <!-- Horizontal line -->
+                        <a href="SignUp.html">Sign Up</a>
+                    </div>`;
+            }
+        }
+
+        // Call renderContent function to render personalized content
+        renderContent();
+
+        // Function to logout
+        function logout() {
+            // Perform logout actions, such as clearing session data
+            // Clearing userId will log the user out and remove their profile data
+            localStorage.removeItem("userId");
+            // Update isLoggedIn variable
+            isLoggedIn = false;
+            // Redirect to the login page
+            window.location.href = "Login.html";
+        }
+
+        // Function to delete a visit
+        function deleteVisit(button) {
+            // Access the parent <tr> element of the button
+            var row = button.closest('tr');
+            // Remove the entire row from the table
+            row.remove();
+
+            // Retrieve the trip number from the row
+            var tripNumber = parseInt(row.querySelector('td:first-child').innerText);
+
+            // Retrieve user's profile data from localStorage
+            var userProfile = JSON.parse(localStorage.getItem("userProfile_" + userId)) || {};
+            // Retrieve planned visits or initialize as empty array
+            var plannedVisits = userProfile.plannedVisits || [];
+
+            // Find the index of the visit to be deleted in the plannedVisits array
+            var index = plannedVisits.findIndex(function (visit) {
+                return visit.tripNumber === tripNumber;
+            });
+
+            // If the visit is found, remove it from the plannedVisits array
+            if (index !== -1) {
+                plannedVisits.splice(index, 1);
+                // Update the user's profile data in localStorage
+                userProfile.plannedVisits = plannedVisits;
+                localStorage.setItem("userProfile_" + userId, JSON.stringify(userProfile));
+            }
+        }
+    </script>
+
+</body>
+</html>

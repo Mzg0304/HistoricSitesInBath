@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Sites In Bath</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+    <style>
+        /* Add CSS for slideshow container */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Add CSS for navigation arrows */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        /* Position the 'prev' arrow on the left side */
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Position the 'next' arrow on the right side */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a darker background color */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8); /* Darker background color */
+        }
+
+        /* Add CSS for caption text */
+        .caption-container {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+        }
+
+        /* Add CSS for the caption text */
+        .caption-text {
+            color: white;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: relative;
+            bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+   <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+        <p><a href="MaryShelly.html" class="CurrNavLink">Mary Shelly's House</a></p>
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath at Work</a></p>
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+        <p><a href="UserProfile.html" class="NavLink">User Profile</a></p>
+    </div>
+
+    <!-- General Information -->
+    <div class="GeneralInfo">
+        <h2>Mary Shelly's House of Frankenstein</h2>
+        <p>For those fascinated by Mary Shelley's life and works or just an avid Frankenstein enthusiast, Mary Shelley's House of Frankenstein is one of Baths must-visit attractions. Offering a plethora of experiences including Escape Rooms, "The Frankenstein Experience" walking tour, and the "Body In A Suitcase" Game, alongside general access to Mary Shelley House, there's something for everyone.</p>
+        <h3>Photos:</h3>
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="Images/MarryShellyPic1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <img src="Images/MarryShellyPic2.jpg" style="width:100%">
+            </div>
+			
+			<div class="mySlides">
+                <img src="Images/MarryShellyPic3.jpg" style="width:100%">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+  
+		<h3>Map Of Site:</h3>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2490.024733265978!2d-2.365769922663825!3d51.38422347178561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871819969598e71%3A0x278ce50fc709002e!2sMary%20Shelley&#39;s%20House%20of%20Frankenstein!5e0!3m2!1sen!2suk!4v1713968165720!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>

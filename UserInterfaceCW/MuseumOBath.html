@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Sites In Bath</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+		
+        <p><a href="MaryShelly.html" class="NavLink">Mary Shelly's House of Frankenstein</a></p>
+		
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+		
+        <p><a href="MuseumOBath.html" class="CurrNavLink">Museum Of Bath at Work</a></p>
+		
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+		
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+		
+        <p><a href="UserProfile.html" class="NavLink">User Profile</a></p>
+    </div>
+
+    <!-- General Information -->
+    <div class="GeneralInfo">
+        <h2>Museum Of Bath at Work</h2>
+        <p>Delve into the rich industrial history by visiting the Museum Of Bath at Work. Explore this history by visiting the Bowlers Factory and Workshop or even take the opportunity to learn more about Baths working life with an array of displays, allowing you to have a glimse into the citys evoloution across the years.</p>
+        <h3>Photos:</h3>
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="Images/MuseumOBpic1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <img src="Images/MuseumOBpic2.jpg" style="width:100%">
+            </div>
+			
+			<div class="mySlides">
+                <img src="Images/MuseumOBpic3.jpg" style="width:100%">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+		<h3>Map Of Site:</h3>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2489.8114294750426!2d-2.3624474999999507!3d51.38814370000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871816b63ff11e3%3A0x5d4acb31941e1c13!2sMuseum%20of%20Bath%20at%20Work!5e0!3m2!1sen!2suk!4v1713990223729!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		
+    </div>
+	 <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+    </script>
+</body>
+</html>

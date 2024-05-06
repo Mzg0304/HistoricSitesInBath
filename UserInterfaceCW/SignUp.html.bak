@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Historical Sites In Bath</title>
+    <link rel="stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <div class="header" style="background-color: #879ac7; color: white;">
+        <h1 class="Main_Title" style="margin: 0;">Historical Sites In Bath</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="Main_Nav">
+        <p><a href="HomePage.html" class="NavLink">Home</a></p>
+        <p><a href="MaryShelly.html" class="NavLink">Mary Shelly's House</a></p>
+        <p><a href="RomanBath.html" class="NavLink">Roman Baths</a></p>
+        <p><a href="MuseumOBath.html" class="NavLink">Museum Of Bath at Work</a></p>
+        <p><a href="BeckTower.html" class="NavLink">Beckford's Tower</a></p>
+        <p><a href="HolburneMuseum.html" class="NavLink">Holburne Museum</a></p>
+        <p><a href="UserProfile.html" class="NavLink">User Profile</a></p>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="GeneralInfo">
+        <!-- User Signup Form -->
+        <div class="jumbotron text-center">
+            <h1>Create An Account</h1>
+        </div>
+        <div class="container">
+            <form class="form-signup" method="post" id="form-signup">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter username here" name="username" id="username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Repeat password" name="password_repeat" id="password_repeat" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" name="btn-signup" id="btn_signup" disabled>
+                        <span class="glyphicon glyphicon-user"></span> &nbsp; Signup
+                    </button>
+                </div>
+                <div class="alert alert-success" id="success" style="display: none"></div>
+                <div class="alert alert-warning" id="error" style="display: none"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+	
+            localStorage.setItem("isLoggedIn", "false");
+            var username_valid = false;
+            var password_valid = false;
+
+            var username = $("#username");
+            var successmsg = $("#success");
+            var failmsg = $("#error");
+            var password = $("#password");
+            var repeat = $("#password_repeat");
+            var submit = $("#btn_signup");
+
+            function show_error_message(message) {
+                successmsg.hide();
+                failmsg.html(message);
+                failmsg.show();
+            }
+
+            function show_success_message(message) {
+                failmsg.hide();
+                successmsg.html(message);
+                successmsg.show();
+            }
+
+            function checkUsername() {
+                var tasks = localStorage.getItem("tasks");
+                if (!tasks) {
+                    username_valid = true; // No existing tasks, so username is unique
+                    return;
+                }
+                if (tasks.includes(username.val())) {
+                    show_error_message("Username already exists");
+                    username_valid = false;
+                } else {
+                    username_valid = true;
+                }
+                checkSubmitButton();
+            }
+
+            function checkPassword() {
+                if (password.val() !== repeat.val() && !isSimilar(password.val(), repeat.val())) {
+                    show_error_message("Passwords do not match");
+                    password_valid = false;
+                } else {
+                    password_valid = true;
+                }
+                checkSubmitButton();
+            }
+
+            function isSimilar(str1, str2) {
+                if (str1.length !== str2.length) return false;
+                var mismatchCount = 0;
+                for (var i = 0; i < str1.length; i++) {
+                    if (str1[i] !== str2[i]) {
+                        mismatchCount++;
+                        if (mismatchCount > 1) return false;
+                    }
+                }
+                return true;
+            }
+
+            function checkSubmitButton() {
+                if (username_valid && password_valid) {
+                    submit.prop('disabled', false);
+                } else {
+                    submit.prop('disabled', true);
+                }
+            }
+
+            $(document).on('input', '#username', checkUsername);
+            $(document).on('input', '#password', checkPassword);
+            $(document).on('input', '#password_repeat', checkPassword);
+
+            <!-- Inside the script tag -->
+<!-- Inside the script tag -->
+$('#form-signup').submit(function (event) {
+    event.preventDefault();
+    var username_value = username.val();
+    var password_value = password.val();
+    var tasks = localStorage.getItem("tasks");
+    if (!tasks) {
+        // Create tasks item if it doesn't exist
+        tasks = [];
+    } else {
+        tasks = JSON.parse(tasks);
+    }
+    // Check if the username already exists
+    var usernameExists = tasks.some(task => task.username === username_value);
+    if (usernameExists) {
+        show_error_message("Username already exists. Please choose a different one.");
+        return;
+    }
+    // Add the new user to the tasks list
+    tasks.push({ username: username_value, password: password_value });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    // Set the userId and isLoggedIn upon successful signup
+    localStorage.setItem("userId", username_value);
+    isLoggedIn = true;
+    // Redirect to the user profile page
+    window.location.href = "UserProfile.html";
+});
+        });
+    </script>
+</body>
+</html>

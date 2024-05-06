@@ -1,0 +1,408 @@
+
+body {
+        margin: 0;
+        padding: 0;
+		background-color:#b1e8bf;/* Light green */
+        font-family: Arial, sans-serif;
+    }
+
+ .header {
+            background-color: #5fd07c; 
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+			
+        }
+
+/* Nav Bar */
+
+
+.Main_Nav{
+	display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    min-width: 400px;
+	margin-bottom:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:-20px;
+	font-family: Arial, sans-serif;
+	color:white;
+	background-color: #879ac7;
+}
+
+
+/* Navigation Links */
+.NavLink {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    padding: 0 10px;
+    color: white; /* Set text color to white */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Set font size */
+    font-weight: bold; /* Set font weight to bold */
+}
+
+.NavLink:hover {
+	color:#b1e8bf;
+}
+
+.CurrNavLink {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    padding: 0 10px;
+    color: #73d68c; /* Set text color to white */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Set font size */
+    font-weight: bold; /* Set font weight to bold */
+}
+
+.GeneralInfo{
+	
+	 max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #879ac7; /* Light blue background */
+    border: 1px solid #5fd07c; /* Green border */
+    border-radius: 5px;
+    text-align: center; /* Center align all text */
+    color: white; /* Set text color to white */
+}
+
+.PopularSite {
+    color: black;
+    background-color: #95e0a8;
+    border: 1px solid #ccc; /* Add a border around the box */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    padding: 20px; /* Add some padding inside the box */
+    margin: 10px 0; /* Add some margin between boxes and zero margin top and bottom */
+    width: calc(33.33% - 20px); /* Set width to approximately one-third of the container's width with some margin */
+    display: inline-block; /* Make boxes display inline */
+    vertical-align: top; /* Align boxes to the top */
+    box-sizing: border-box; /* Include padding and border in the box's total width and height */
+    text-align: left; /* Align text to the left within the box */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease; /* Transition background color change */
+}
+
+.PopularSite:hover {
+    background-color: #f5f5f5; /* Light gray background */
+}
+/* Pictures CSS */
+ /* Add CSS for slideshow container */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+ /* Hide the images by default */
+        .mySlides img {
+            height: 400px; /* Adjust the height as needed */
+            width: auto;
+        }
+
+        /* Add CSS for navigation arrows */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        /* Position the 'prev' arrow on the left side */
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Position the 'next' arrow on the right side */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a darker background color */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8); /* Darker background color */
+        }
+
+        /* Add CSS for caption text */
+        .caption-container {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+        }
+
+        /* Add CSS for the caption text */
+        .caption-text {
+            color: white;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: relative;
+            bottom: 8px;
+        }
+
+/* User Profile CSS */
+
+
+
+ 
+		
+ .user-outline {
+    position: absolute;
+    top: 20px; /* Adjust the top position as needed */
+    right: 20px; /* Adjust the right position as needed */
+    width: 160px;
+    text-align: center;
+}
+
+
+ .user-outline a {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px; /* Add some margin between buttons */
+            padding: 8px 12px; /* Add padding for better appearance */
+            border-radius: 5px;
+        }
+.user-outline a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+       
+  .line {
+			
+            display: inline-block;
+            width: 160px;
+            height: 2px;
+            background-color: #333;
+            margin: 0 5px; /* Adjust spacing between line and buttons */
+        }
+		
+.circle {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-bottom: 5px; /* Add margin between circle and button */
+        }
+		
+	
+		
+/* Favourites CSS */
+/* Favourites CSS */
+.favorites {
+	
+    background-color: #9487c7;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 300px; /* Adjust width of the favorites box */
+}
+
+.favorites h2 {
+    font-size: 20px; /* Reduce font size */
+    margin-top: 0; /* Remove top margin for the heading */
+    color: white; /* Set text color to white */
+}
+
+.favorites ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 14px; /* Reduce font size */
+}
+
+.favorites ul li {
+    margin-bottom: 3px; /* Reduce margin between list items */
+    line-height: 1.5; /* Ensure proper spacing between lines */
+}
+
+.favorites ul li a {
+    color: white; /* Set text color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+.favorites ul li a:hover{
+    color: white; /* Set text color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+.favorites ul li:before {
+    content: "\2605"; /* Unicode character for a star */
+    color: yellow;
+    display: inline-block;
+    width: 1em; /* Set fixed width for stars */
+    margin-right: 5px; /* Adjust margin between star and text */
+    vertical-align: middle; /* Align the star vertically */
+}
+
+
+/* Planned Visits And Your Comments*/
+ /* Add your CSS styles here */
+        .favorites, .planned-visits, .your-comments {
+            display: inline-block; /* Make divs inline */
+            vertical-align: top; /* Align divs to the top */
+        }
+        .planned-visits, .your-comments {
+            background-color: #87c7a0;
+            border-radius: 30px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 90%; /* Adjust width of the box */
+            margin-left: 20px; /* Add some space between divs */
+        }
+        .planned-visits h2, .your-comments h2 {
+            font-size: 24px; /* Set font size for the title */
+            color: white; /* Set text color to white */
+            margin-bottom: 10px; /* Add some space below the title */
+        }
+        .planned-visits table {
+            width: 100%; /* Make the table fill the entire width of the box */
+            border-collapse: collapse; /* Collapse borders between cells */
+        }
+        .planned-visits th, .planned-visits td, .your-comments th, .your-comments td {
+            border: 1px solid white; /* Add borders to table cells */
+            padding: 8px; /* Add padding to table cells */
+            text-align: center; /* Center-align text within cells */
+            color: white; /* Set text color to white */
+        }
+        .planned-visits th, .your-comments th {
+            background-color: #6a9b7e; /* Set background color for table header cells */
+        }
+        .planned-visits td, .your-comments td {
+            background-color: #87c7a0; /* Set background color for table data cells */
+        }
+         .your-comments .delete-btn {
+            background-color: #c75656;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Book a Visit Button */
+        .book-visit-btn {
+            display: block;
+            background-color: #6a9b7e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .book-visit-btn:hover {
+            background-color: #5c896d;
+		}
+		
+		
+		.delete-btn {
+            background-color: #ff4444; /* Red color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Style for the logout button */
+        .logout-btn {
+            background-color: #A52A2A; /* Red color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect for buttons */
+        .delete-btn:hover, .logout-btn:hover {
+            background-color: #cc0000; /* Darker shade of red */
+        }
+/* Sign Up CSS */
+ .jumbotron {
+            background-color: #87c7a0;
+            color: white;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+ .container {
+            padding: 20px;
+        }
+
+.form-register {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+.form-register .form-group {
+            margin-bottom: 20px;
+        }
+		
+/* Calender selection */
+ /* Style for the selected date */
+   /* Style for the selected date */
+.selected-date {
+    background-color: #f2f2f2; /* Light gray background */
+    font-weight: bold; /* Bold text */
+    outline: 1px dashed #00BCD4; /* Blue dashed outline */
+}
+
+.selected-date span {
+    border-bottom: 2px solid currentColor; /* Solid border bottom */
+}
+
+/* Comment Section CSS */
+
+ /* CSS for comment section */
+        .comment-section {
+            margin-top: 20px;
+        }
+        .comment-section textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            resize: vertical;
+        }
+        .comment-section button {
+            padding: 5px 10px;
+            background-color: #879ac7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .comment-section .comments {
+            margin-top: 20px;
+        }
+        .comment-section .comment {
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
